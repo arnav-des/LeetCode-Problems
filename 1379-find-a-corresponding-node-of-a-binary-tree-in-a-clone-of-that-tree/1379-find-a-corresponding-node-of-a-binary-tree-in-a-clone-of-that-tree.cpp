@@ -11,14 +11,23 @@
 class Solution {
 public:
     TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
-        if(cloned==NULL)
-            return NULL;
-        if(cloned->val == target->val)
-            return cloned;
+       std::stack<TreeNode*> s;
+       s.push(cloned);
         
-        TreeNode* l = getTargetCopy(original,  cloned->left ,target);
-        TreeNode* r = getTargetCopy(original,  cloned->right ,target);
-        if(l)return l;             
-        return r;
+       while(!s.empty()) {
+           auto current{s.top()};
+           s.pop();
+           
+           if (current->val == target->val) 
+               return current;
+
+           if (current->left)
+               s.push(current->left);
+           
+           if (current->right)
+               s.push(current->right);
+       }
+        
+       return nullptr;
     }
 };

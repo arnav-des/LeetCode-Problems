@@ -1,13 +1,13 @@
 class Solution {
 public:
     int minPartitions(string n) {
-        int m=0,flag=n.length();
-        for(int i=0;i<flag;i++){
-            m = max(m,(int)n[i]);
-             if(m==57){
+        int i,len=n.length(),maxi=0;
+        for(i=0;i<len;i++) {
+            maxi=max(maxi,(int)n[i]);
+            if(maxi==57) {
                 break;
             }
         }
-        return m-48;
+        return maxi-48;
     }
 };

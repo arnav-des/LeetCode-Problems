@@ -1,11 +1,12 @@
 class Solution {
 public:
     int minPartitions(string n) {
-        vector<int> vec;
-        for(int i=0; i<n.length(); i++) {
-            vec.push_back(int(n[i]));
+        int m=0;
+        for(int i=0;i<n.length();i++){
+            m = max(m,(int)n[i]);
+            if(m==9)
+                break;
         }
-        sort(vec.begin(), vec.end(), greater<int>());
-        return (vec[0]-48);
+        return m-48;
     }
 };
